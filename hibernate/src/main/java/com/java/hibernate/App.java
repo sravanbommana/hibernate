@@ -1,5 +1,10 @@
 package com.java.hibernate;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -7,24 +12,30 @@ import org.hibernate.cfg.Configuration;
 
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws IOException
     {
-        System.out.println( "Application Started!" );
-        Configuration cfg = new Configuration();
-        cfg.configure("hibernate.cfg.xml");
-        SessionFactory factory = cfg.buildSessionFactory();
-        System.out.println(factory);
-        
-        Student student = new Student();
-        student.setId(10);
-        student.setCity("Hyderabad");
-        student.setName("Ramu");
-        
-        System.out.println(student);
-        Session session = factory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.save(student);
-        tx.commit();
-        session.close();
+    	Configuration cfg = new Configuration();
+    	cfg.configure("hibernate.cfg.xml");
+    	SessionFactory factory = cfg.buildSessionFactory();
+    	
+    	Address address = new Address();
+    	address.setStreet("Avenue");
+    	address.setCity("Benagluru");
+    	address.setX(21);
+    	address.setAddedDate(new Date());
+    	address.setOpen(true);
+    	
+    	//reading image
+    	FileInputStream fis = new FileInputStream("src/main/java/test.png");
+    	byte[] data = new byte[fis.available()];
+    	fis.read(data);
+    	address.setImage(data);
+    	
+    	Session session = factory.openSession();
+    	Transaction tx = session.beginTransaction();
+    	session.save(address);
+    	tx.commit();
+    	session.close();
+    	
     }
 }
