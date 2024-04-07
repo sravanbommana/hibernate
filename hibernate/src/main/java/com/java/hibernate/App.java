@@ -18,13 +18,18 @@ public class App
     	cfg.configure("hibernate.cfg.xml");
     	SessionFactory factory = cfg.buildSessionFactory();
     	Session session = factory.openSession();
-    	Student student = (Student)session.get(Student.class, 6);
-    	Student student1 = (Student)session.load(Student.class, 1);
-
-    	System.out.println(student.getCity());
+    	Transaction tx = session.beginTransaction();
+    	Student student = new Student();
+    	student.setId(12);
+    	student.setName("User2");
+    	student.setCity("Chennai");
+    	Certificate cert = new Certificate();
+    	cert.setCourse("Java");
+    	cert.setDuration("30 days");
+    	student.setCerificate(cert);
+    	session.save(student);
+    	tx.commit();
     	session.close();
     	factory.close();
-    	
-    	
     }
 }

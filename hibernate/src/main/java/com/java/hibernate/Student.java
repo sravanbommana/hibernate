@@ -13,7 +13,7 @@ public class Student {
 	private int id;
 	private String name;
 	private String city;
-
+	private Certificate cerificate;
 	public Student() {
 
 	}
@@ -52,6 +52,14 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", city=" + city + "]";
+	}
+
+	public Certificate getCerificate() {
+		return cerificate;
+	}
+
+	public void setCerificate(Certificate cerificate) {
+		this.cerificate = cerificate;
 	}
 	
 	
