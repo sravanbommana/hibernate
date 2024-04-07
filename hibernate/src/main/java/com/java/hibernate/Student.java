@@ -1,11 +1,15 @@
 package com.java.hibernate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="student_address")
 public class Student {
 	@Id
+	@Column(name="address_id")
 	private int id;
 	private String name;
 	private String city;

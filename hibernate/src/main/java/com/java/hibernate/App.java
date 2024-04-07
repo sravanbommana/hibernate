@@ -17,25 +17,14 @@ public class App
     	Configuration cfg = new Configuration();
     	cfg.configure("hibernate.cfg.xml");
     	SessionFactory factory = cfg.buildSessionFactory();
-    	
-    	Address address = new Address();
-    	address.setStreet("Avenue");
-    	address.setCity("Benagluru");
-    	address.setX(21);
-    	address.setAddedDate(new Date());
-    	address.setOpen(true);
-    	
-    	//reading image
-    	FileInputStream fis = new FileInputStream("src/main/java/test.png");
-    	byte[] data = new byte[fis.available()];
-    	fis.read(data);
-    	address.setImage(data);
-    	
     	Session session = factory.openSession();
-    	Transaction tx = session.beginTransaction();
-    	session.save(address);
-    	tx.commit();
+    	Student student = (Student)session.get(Student.class, 6);
+    	Student student1 = (Student)session.load(Student.class, 1);
+
+    	System.out.println(student.getCity());
     	session.close();
+    	factory.close();
+    	
     	
     }
 }
