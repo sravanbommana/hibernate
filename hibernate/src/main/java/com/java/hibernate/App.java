@@ -19,16 +19,19 @@ public class App
     	SessionFactory factory = cfg.buildSessionFactory();
     	Session session = factory.openSession();
     	Transaction tx = session.beginTransaction();
-    	Student student = new Student();
-    	student.setId(12);
-    	student.setName("User2");
-    	student.setCity("Chennai");
-    	Certificate cert = new Certificate();
-    	cert.setCourse("Java");
-    	cert.setDuration("30 days");
-    	student.setCerificate(cert);
-    	session.save(student);
+    	Question que = new Question();
+    	que.setId(12);
+    	que.setQuestion("What is java ?");
+    	Answer answer = new Answer();
+    	answer.setId(100);
+    	answer.setAnswer("Java is a programming language");
+    	que.setAnswer(answer);
+    	answer.setQuestion(que);
+    	session.save(answer);
+    	session.save(que);
     	tx.commit();
+    	Question quest = (Question)session.get(Question.class, 12);
+    	System.out.println(quest);
     	session.close();
     	factory.close();
     }
