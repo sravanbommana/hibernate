@@ -12,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 
 public class App 
 {
+	// 4 states - Transient, Persistent, Detached, Removed
     public static void main( String[] args ) throws IOException
     {
     	Configuration cfg = new Configuration();
@@ -22,14 +23,13 @@ public class App
     	Student student = new Student();
     	student.setId(12);
     	student.setName("User2");
-    	student.setCity("Chennai");
-    	Certificate cert = new Certificate();
-    	cert.setCourse("Java");
-    	cert.setDuration("30 days");
-    	student.setCerificate(cert);
-    	session.save(student);
-    	tx.commit();
-    	session.close();
+    	//Now the object is in Transient state, the data is not yet in session or database
+    	student.setCity("Chennai"); 
+    
+    	session.save(student); 
+
+    	tx.commit(); //Now the object is in Persistent state, the data is in session or database
+    	session.close(); // Now the data is in Detached state, it's in database but not with session 
     	factory.close();
     }
 }
