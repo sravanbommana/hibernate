@@ -5,14 +5,18 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.annotations.Cache;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+
+import jakarta.persistence.Cacheable;
 
 /**********************************************************************************************************
  * For enabling second level cache folloe beklow instructions
  * 1. add dependencies (hibernate-ehcache, ehcache) in pom.xml
  * 2. set propertiers (cache.use_second_level_cache, cache.region.factory_class) in hibernate 
  * config file 
+ * 3. add @Cache, @Cacheable in entity class
  ***********************************************************************************************************/
 
 public class SecondLevelCacheExample {
