@@ -1,5 +1,9 @@
 package com.java.hibernate;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,6 +11,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="student_address")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Student {
 	@Id
 	@Column(name="address_id")
