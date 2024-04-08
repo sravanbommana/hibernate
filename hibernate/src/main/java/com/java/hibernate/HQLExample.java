@@ -15,28 +15,21 @@ public class HQLExample {
 		cfg.configure("hibernate.cfg.xml");
 		SessionFactory factory = cfg.buildSessionFactory();
 		Session session = factory.openSession();
-		/* Transaction tx = session.beginTransaction();
-		Student student = new Student();
-    	student.setId(16);
-    	student.setName("Raghava");
-    	student.setCity("Hyderabad");
-    	Certificate cert = new Certificate();
-    	cert.setCourse("C#");
-    	cert.setDuration("30 days");
-    	student.setCerificate(cert);
-    	session.save(student);
-    	tx.commit(); */
-		//String stmtQuery = "from Student where name=:x";
-		String stmtQuery = "from Student as s where s.name=:x and s.city=:c";
-		Query query = session.createQuery(stmtQuery);
-		query.setParameter("x", "Ram");
-		query.setParameter("c", "Bengaluru");
-		List<Student> list = query.list();
-		for(Student ele: list) {
-			System.out.println(ele.getCerificate().getCourse());
-		}
+		Transaction tx = session.beginTransaction();
+		/**********************************************************
+		String query = "delete from Student as s where s.city=:c";
+		Query q1 = session.createQuery(query);
+		q1.setParameter("c", "Sacramento");
+		int res = q1.executeUpdate();
+		System.out.println("Deleted records "+res); 
+		************************************************************/
+		String query1 = "update Student set city=:c where name=:n";
+		Query q2 = session.createQuery(query1);
+		q2.setParameter("c", "Dallas");
+		q2.setParameter("n", "John");
+		int res = q2.executeUpdate();
+		tx.commit();
 		session.close();
 		factory.close();
-		
 	}
 }
