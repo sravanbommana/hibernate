@@ -4,12 +4,12 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/myhiber</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/relation</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">Sravan@90</property>
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create</property>
 		<property name="show_sql">true</property>
-		<mapping class="com.java.hibernate.Employee"/>
-		<mapping class="com.java.hibernate.BankAccount"/>
+		<mapping class="com.java.hibernate.EmployeeOne"/>
+		<mapping class="com.java.hibernate.Project"/>
 	</session-factory>
 </hibernate-configuration>
